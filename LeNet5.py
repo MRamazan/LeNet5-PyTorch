@@ -13,6 +13,7 @@ class LeNet5(nn.Module):
         # quote: Layer S2 is a sub-sampling layer with 6 feature maps of
         # size 14x14. Each unit in each feature map is connected to a
         # 2x2 neighborhood in the corresponding feature map in C1.   (page: 7, title: LeNet-5, 4. paragraph)"
+        # Layer S2 and S4 are same
         self.avg_pool = nn.AvgPool2d(kernel_size=2)
 
         # quote: "Layer C3 is a convolutional layer with 16 feature maps.
