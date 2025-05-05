@@ -18,7 +18,7 @@ class LeNet5(nn.Module):
         # quote: "Layer C3 is a convolutional layer with 16 feature maps.
         # Each unit in each feature map is connected to several 5x5 neighborhoods at identical locations in a subset of S2's feature maps.
         # (page: 7 , title: LeNet-5, 5. paragraph)""
-        # (i added padding)
+        # (i added padding for shape mismatch)
         self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, padding=1)
 
 
@@ -31,6 +31,7 @@ class LeNet5(nn.Module):
 
     def forward(self, x):
         #convolution
+        #i changed activation function to gelu because it performed better
         x = F.gelu(self.conv1(x))
         x = self.avg_pool(x)
         x = F.gelu(self.conv2(x))
@@ -42,4 +43,3 @@ class LeNet5(nn.Module):
         x = F.gelu(self.fc2(x))
         x = self.fc3(x)
         return x
-
